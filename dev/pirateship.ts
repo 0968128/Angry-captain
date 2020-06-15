@@ -2,15 +2,15 @@
 
 class PirateShip extends Ship {
     // Fields
-    private captain         : Captain
+    private captain: Captain
 
-    private numberOfHits    : number = 0
+    private numberOfHits: number = 0
     private _hit: boolean = false
     
-    private previousHit     : boolean = false
+    private previousHit: boolean = false
 
     // Properties
-    public set hit(value: boolean)  { this._hit = value     }
+    public set hit(value: boolean) { this._hit = value }
 
     constructor() {
         super()
@@ -20,9 +20,7 @@ class PirateShip extends Ship {
 
     public update() {
         this.checkCollision()
-
         this.captain.update()
-
         super.update()
     }
 
@@ -32,6 +30,7 @@ class PirateShip extends Ship {
 
             let times = this.numberOfHits == 1 ? "time" : "times"
             console.log(`${this.color} pirateship got hit ${this.numberOfHits} ${times}!`)
+            MessageBoard.getInstance().addMessage("Schip " + this.color + " is al " + this.numberOfHits + " keer gebotst!")
         }
 
         this.previousHit = this._hit

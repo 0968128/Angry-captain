@@ -1,14 +1,14 @@
 class Main {
-
-    private ships : PirateShip[] = []
+    private ships: PirateShip[] = []
 
     constructor() {
         for (let i = 0; i < 10; i++) {
             this.ships.push(new PirateShip())
         }
 
-        // Eventueel Messageboard aanmaken zodat deze zichtbaar wordt?
+        console.log("Piratenschepen aangemaakt!")
 
+        // Gameloop starten
         this.gameLoop()
     }
 
@@ -22,14 +22,14 @@ class Main {
                         ship.hit = true
                         // break inner loop to prevent overwriting the hit
                         break
-                    } 
-                    else {
+                    } else {
                         ship.hit = false
                     }
                 }
             }
         }
 
+        // Gameloop aan de gang houden
         requestAnimationFrame(() => this.gameLoop())
     }
 }

@@ -15,10 +15,12 @@ class Captain extends HTMLElement {
         if (numberOfHits == 1) {
             this.style.backgroundImage = `url(images/emote_alert.png)`;
             console.log(`Captain of ${this.ship.color} pirateship WOKE UP!`);
+            MessageBoard.getInstance().addMessage("De kapitein van schip " + this.ship.color + " is wakker geworden van een botsing.");
         }
         else if (numberOfHits == 7) {
             this.style.backgroundImage = `url(images/emote_faceAngry.png)`;
             console.log(`Captain of ${this.ship.color} pirateship got ANGRY!`);
+            MessageBoard.getInstance().addMessage("De kapitein van schip " + this.ship.color + " is boos, want hij is te vaak gebotst.");
         }
     }
 }
@@ -29,6 +31,7 @@ class Main {
         for (let i = 0; i < 10; i++) {
             this.ships.push(new PirateShip());
         }
+        console.log("Piratenschepen aangemaakt!");
         this.gameLoop();
     }
     gameLoop() {
@@ -50,6 +53,39 @@ class Main {
     }
 }
 window.addEventListener("load", () => new Main());
+class MessageBoard extends HTMLElement {
+    constructor() {
+        super();
+        this.messages = [];
+        let game = document.getElementsByTagName("game")[0];
+        game.appendChild(this);
+    }
+    static getInstance() {
+        console.log("Ik kom in de getInstance method.");
+        if (!MessageBoard.instance) {
+            console.log("Er bestaat nog geen MessageBoard");
+            MessageBoard.instance = new MessageBoard();
+            console.log("A new messageboard was created.");
+        }
+        console.log("MessageBoard wordt teruggegeven.");
+        return MessageBoard.instance;
+    }
+    addMessage(message) {
+        this.messages.splice(0, 0);
+        this.messages.push(message);
+        this.updateMessages();
+    }
+    updateMessages() {
+        this.innerHTML = "";
+        for (const message of this.messages) {
+            console.log("Message: " + message);
+            let messageElement = document.createElement("message");
+            messageElement.innerHTML = message;
+            this.appendChild(messageElement);
+        }
+    }
+}
+window.customElements.define("messageboard-component", MessageBoard);
 class Ship extends HTMLElement {
     constructor() {
         super();
@@ -133,6 +169,7 @@ class PirateShip extends Ship {
             this.captain.onCollision(++this.numberOfHits);
             let times = this.numberOfHits == 1 ? "time" : "times";
             console.log(`${this.color} pirateship got hit ${this.numberOfHits} ${times}!`);
+            MessageBoard.getInstance().addMessage("Schip " + this.color + " is al " + this.numberOfHits + " keer gebotst!");
         }
         this.previousHit = this._hit;
     }

@@ -1,6 +1,5 @@
 class Captain extends HTMLElement{
-    
-    private ship : Ship
+    private ship: Ship
 
     constructor(ship : Ship) {
         super()
@@ -17,14 +16,15 @@ class Captain extends HTMLElement{
         this.style.transform = `translate(${x}px, ${y}px) rotate(${0}deg)`
     }
 
-    public onCollision(numberOfHits : number) {
+    public onCollision(numberOfHits: number) {
         if(numberOfHits == 1)  { 
             this.style.backgroundImage = `url(images/emote_alert.png)`
             console.log(`Captain of ${this.ship.color} pirateship WOKE UP!`)
-        }
-        else if(numberOfHits == 7) {
+            MessageBoard.getInstance().addMessage("De kapitein van schip " + this.ship.color + " is wakker geworden van een botsing.")
+        } else if(numberOfHits == 7) {
             this.style.backgroundImage = `url(images/emote_faceAngry.png)`
             console.log(`Captain of ${this.ship.color} pirateship got ANGRY!`)
+            MessageBoard.getInstance().addMessage("De kapitein van schip " + this.ship.color + " is boos, want hij is te vaak gebotst.")
         }
     }
 }
