@@ -21,8 +21,7 @@ class MessageBoard extends HTMLElement {
     }
 
     public addMessage(message:string) {
-        this.messages.splice(0, 0)
-        this.messages.push(message)
+        this.messages.splice(0, 0, message)
         this.updateMessages()
     }
 

@@ -15,12 +15,12 @@ class Captain extends HTMLElement {
         if (numberOfHits == 1) {
             this.style.backgroundImage = `url(images/emote_alert.png)`;
             console.log(`Captain of ${this.ship.color} pirateship WOKE UP!`);
-            MessageBoard.getInstance().addMessage("De kapitein van schip " + this.ship.color + " is wakker geworden van een botsing.");
+            MessageBoard.getInstance().addMessage(`Captain of <span style="color:${this.ship.color}">${this.ship.color} </span> pirateship WOKE UP!`);
         }
         else if (numberOfHits == 7) {
             this.style.backgroundImage = `url(images/emote_faceAngry.png)`;
             console.log(`Captain of ${this.ship.color} pirateship got ANGRY!`);
-            MessageBoard.getInstance().addMessage("De kapitein van schip " + this.ship.color + " is boos, want hij is te vaak gebotst.");
+            MessageBoard.getInstance().addMessage(`Captain of <span style="color:${this.ship.color}">${this.ship.color} </span> pirateship got ANGRY!`);
         }
     }
 }
@@ -71,8 +71,7 @@ class MessageBoard extends HTMLElement {
         return MessageBoard.instance;
     }
     addMessage(message) {
-        this.messages.splice(0, 0);
-        this.messages.push(message);
+        this.messages.splice(0, 0, message);
         this.updateMessages();
     }
     updateMessages() {
@@ -169,7 +168,7 @@ class PirateShip extends Ship {
             this.captain.onCollision(++this.numberOfHits);
             let times = this.numberOfHits == 1 ? "time" : "times";
             console.log(`${this.color} pirateship got hit ${this.numberOfHits} ${times}!`);
-            MessageBoard.getInstance().addMessage("Schip " + this.color + " is al " + this.numberOfHits + " keer gebotst!");
+            MessageBoard.getInstance().addMessage(`<span style="color:${this.color}">${this.color} </span> pirateship got hit ${this.numberOfHits} ${times}!`);
         }
         this.previousHit = this._hit;
     }

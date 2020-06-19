@@ -30,7 +30,7 @@ class PirateShip extends Ship {
 
             let times = this.numberOfHits == 1 ? "time" : "times"
             console.log(`${this.color} pirateship got hit ${this.numberOfHits} ${times}!`)
-            MessageBoard.getInstance().addMessage("Schip " + this.color + " is al " + this.numberOfHits + " keer gebotst!")
+            MessageBoard.getInstance().addMessage(`<span style="color:${this.color}">${this.color} </span> pirateship got hit ${this.numberOfHits} ${times}!`)
         }
 
         this.previousHit = this._hit

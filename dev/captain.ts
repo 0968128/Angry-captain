@@ -20,11 +20,11 @@ class Captain extends HTMLElement{
         if(numberOfHits == 1)  { 
             this.style.backgroundImage = `url(images/emote_alert.png)`
             console.log(`Captain of ${this.ship.color} pirateship WOKE UP!`)
-            MessageBoard.getInstance().addMessage("De kapitein van schip " + this.ship.color + " is wakker geworden van een botsing.")
+            MessageBoard.getInstance().addMessage(`Captain of <span style="color:${this.ship.color}">${this.ship.color} </span> pirateship WOKE UP!`)
         } else if(numberOfHits == 7) {
             this.style.backgroundImage = `url(images/emote_faceAngry.png)`
             console.log(`Captain of ${this.ship.color} pirateship got ANGRY!`)
-            MessageBoard.getInstance().addMessage("De kapitein van schip " + this.ship.color + " is boos, want hij is te vaak gebotst.")
+            MessageBoard.getInstance().addMessage(`Captain of <span style="color:${this.ship.color}">${this.ship.color} </span> pirateship got ANGRY!`)
         }
     }
 }
