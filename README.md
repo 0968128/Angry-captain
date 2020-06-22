@@ -17,3 +17,9 @@ Toevoegen van het Singleton Pattern zodat alle piratenschepen en kapiteinen makk
 - Teken het klassendiagram waarbij je er rekening mee houdt dat het `Messageboard` een *Singleton* is.
 - Maak het `Messageboard` in code en pas het *Singleton Pattern* toe.
 - Plaats de berichten op het `Messageboard` zoals hierboven beschreven.
+
+## Lucas' notes
+- Ik kwam niet verder tot de volgende programmeerles - waar de opdracht werd besproken. Daarna alsnog
+de opdracht afgemaakt.
+- In de opdracht van volgende week - zie https://github.com/0968128/Notify-the-captain voor meer
+details - zit ook een toepassing van dit patroon.
